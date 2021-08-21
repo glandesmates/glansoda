@@ -23,23 +23,22 @@ class Advertisement:
 
 
 def osleping():
-    try:
-        os.system('cls')
-    except:
-        os.system('clear')
+    linux = 'clear'; windows = 'cls'
+    os.system([linux, windows][os.name == 'nt'])
 
-banner = '\n'"""
-  ▄▀  █    ██      ▄          ▄▄▄▄▄   ████▄ ██▄   ██   
-▄▀    █    █ █      █        █     ▀▄ █   █ █  █  █ █  
-█ ▀▄  █    █▄▄█ ██   █     ▄  ▀▀▀▀▄   █   █ █   █ █▄▄█ 
-█   █ ███▄ █  █ █ █  █      ▀▄▄▄▄▀    ▀████ █  █  █  █ 
- ███      ▀   █ █  █ █                      ███▀     █ 
-             █  █   ██                              █  
-            ▀                                      ▀ 
+osleping()
+
+banner = """
+            .__                                 .___       
+       ____ |  | _____    ____   __________   __| _/____   
+      / ___\|  | \__  \  /    \ /  ___/  _ \ / __ |\__  \  
+     / /_/  >  |__/ __ \|   |  \\___ (  <_> ) /_/ | / __ \_
+     \___  /|____(____  /___|  /____  >____/\____ |(____  /
+    /_____/           \/     \/     \/           \/     \/
 """
 print('\n\n')
 
-colors = Fore.RED, Fore.WHITE
+colors = Fore.LIGHTBLACK_EX, Fore.LIGHTMAGENTA_EX
 
 def cute(var, col):
 
@@ -55,30 +54,41 @@ def cute(var, col):
             print(Style.BRIGHT + Fore.LIGHTGREEN_EX + char, end='')
             caca()
         elif col == 'rojos':
-            print(Style.BRIGHT + Fore.LIGHTRED_EX + char, end='')
+            print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + char, end='')
             caca()
 
 cute(banner, 'mocos')
 
 
-me = ('\t\t      By Mynor Estrada', """
-                 - Youtube: GlandesMates
-                 - Github: GlandesMates""")
+me = ("\t\t   @ By Mynor Estrada @", """
+                 $ Youtube: GlandesMates $
+                 $ Github:  GlandesMates $""")
 
 cute(me[0], 'verdes')
 cute(me[1], 'rojos')
 print('\n\n')
 
-parser = arg.ArgumentParser()
+parser = arg.ArgumentParser(add_help=False, usage=""""
+---------------------------------------------------------------------------
+| [query]   query search  | [--ip_save]  save directions from your query  |
+| [ lim ]   limit search  | [ --save  ]  save all information into a file |
+---------------------------------------------------------------------------
+| [  --ftp   ]   try to access the devices of your search                 |
+---------------------------------------------------------------------------
+| [--requests]   shows only accessible addresses                          |
+---------------------------------------------------------------------------
+
+""")
 
 positional = parser.add_argument_group('POSITIONAL')
-positional.add_argument('lim', type=int)
 positional.add_argument('search', type=str)
+positional.add_argument('lim', type=int)
 
-parser.add_argument('--ftp', type=bool)
-parser.add_argument('--requests', type=bool)
-parser.add_argument('--data', type=bool)
-parser.add_argument('--save', type=str)
+parser.add_argument('--ip_save')
+parser.add_argument('--ftp', action='store_true')
+parser.add_argument('--requests', action='store_true')
+parser.add_argument('--data', action='store_true')
+parser.add_argument('--save')
 
 args = parser.parse_args()
 
@@ -164,6 +174,15 @@ for result in api.search_cursor(query):
 
                 """
                 f.write(info)
+        
+        if args.ip_save:
+            def SAVE_IP():
+                if os.path.exists(args.ip_save): f = open(args.ip_save, 'a+')
+                else: f = open(args.ip_save, 'w')
+                return f
+
+            ip_data = SAVE_IP(); ip_data.write(result['ip_str'] + '\n')
+
 
         count += 1
 
