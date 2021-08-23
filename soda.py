@@ -96,7 +96,6 @@ parser = arg.ArgumentParser(add_help=False, usage=Fore.LIGHTWHITE_EX + """
 ---------------------------------------------------------------------------
 | [  --ftp   ]   try to access the devices of your search                 |
 ---------------------------------------------------------------------------
-|                only tcp scan avaliable with -Pn argument                |
 | [  --nmap  ]       shows you the avaliable services                     |
 |                         (ftp, telnet, ssh, etc)                         |
 ---------------------------------------------------------------------------
@@ -114,6 +113,7 @@ parser.add_argument('--requests', action='store_true')
 parser.add_argument('--data', action='store_true')
 parser.add_argument('--save')
 parser.add_argument('--nmap', action='store_true')
+parser.add_argument('--nmap_args')
 
 args = parser.parse_args()
 
@@ -184,7 +184,7 @@ for result in api.search_cursor(query):
         if args.nmap:
             nm = nmap3.NmapScanTechniques(); print()
             def scan(ip):
-                scan = nm.nmap_tcp_scan(ip, args='-Pn')
+                scan = nm.nmap_tcp_scan(ip, args=args.nmap_args)
                 for ports in scan[ip]['ports']:
                 
                     state = ports['state']
