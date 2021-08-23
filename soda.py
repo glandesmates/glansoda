@@ -113,7 +113,6 @@ parser.add_argument('--requests', action='store_true')
 parser.add_argument('--data', action='store_true')
 parser.add_argument('--save')
 parser.add_argument('--nmap', action='store_true')
-parser.add_argument('--nmap_args')
 
 args = parser.parse_args()
 
@@ -184,7 +183,7 @@ for result in api.search_cursor(query):
         if args.nmap:
             nm = nmap3.NmapScanTechniques(); print()
             def scan(ip):
-                scan = nm.nmap_syn_scan(ip, args=args.nmap_args)
+                scan = nm.nmap_syn_scan(ip)
                 for ports in scan[ip]['ports']:
                 
                     state = ports['state']
