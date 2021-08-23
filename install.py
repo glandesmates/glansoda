@@ -1,10 +1,13 @@
 import os
 
-os.system('pip3 install colorama')
-os.system('pip3 install requests')
-os.system('pip3 install argparse')
-os.system('pip3 install shodan')
-os.system('pip3 python3-nmap')
+def install(module):
+  os.system('pip3 install ' + module)
+
+install('python3-nmap')
+install('shodan')
+install('requests')
+install('argparse')
+install('colorama')
 
 def clear():
   os.system(['clear', 'cls'][os.name == 'nt'])
