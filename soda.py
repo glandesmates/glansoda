@@ -184,7 +184,7 @@ for result in api.search_cursor(query):
         if args.nmap:
             nm = nmap3.NmapScanTechniques(); print()
             def scan(ip):
-                scan = nm.nmap_tcp_scan(ip, args=args.nmap_args)
+                scan = nm.nmap_syn_scan(ip, args=args.nmap_args)
                 for ports in scan[ip]['ports']:
                 
                     state = ports['state']
