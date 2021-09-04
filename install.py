@@ -1,7 +1,10 @@
 import os
 
+print("To make this tool as command 'soda' enter your password")
+
 def install(module):
   os.system('pip3 install ' + module)
+  os.system('sudo pip3 install ' + module)
 
 install('python3-nmap')
 install('shodan')
@@ -14,7 +17,5 @@ def clear():
 
 clear()
 
-print("To make this tool as command 'soda' enter your password")
 os.system('sudo cp soda /usr/bin/')
-
-print("Type 'soda' to use this tool in any path. (You can delete this file now)")
+print("Type 'soda' to use this tool in any location. (You can delete 'install.py' file now)")
