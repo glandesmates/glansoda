@@ -14,4 +14,7 @@ def clear():
 
 clear()
 
-print("You can delete this file with security... ")
+print("To make this tool as command 'soda' enter your password")
+os.system('sudo cp soda /usr/bin/')
+
+print("Type 'soda' to use this tool in any path. (You can delete this file now)")
