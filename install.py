@@ -1,6 +1,11 @@
 import os
 
-print("To make this tool as command 'soda' enter your password")
+c = input('Are you root [y/N] ')
+if c == 'y':
+  pass
+else:
+  print('You had to be root before instalation process')
+  exit()
 
 def install(module):
   os.system('pip3 install ' + module)
@@ -18,5 +23,5 @@ def clear():
 clear()
 
 os.system('sudo cp soda /usr/bin/')
-os.system('chmod +x /usr/bin/soda')
+os.system('sudo chmod +x /usr/bin/soda')
 print("Type 'soda' to use this tool in any location. (You can delete 'install.py' file now)")
