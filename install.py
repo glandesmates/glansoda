@@ -22,6 +22,9 @@ def clear():
 
 clear()
 
+if os.path.exists('usr/bin/soda'):
+  os.system('sudo rm /usr/bin/soda')
+
 os.system('sudo cp soda /usr/bin/')
 os.system('sudo chmod +x /usr/bin/soda')
 print("Type 'soda' to use this tool in any location. (You can delete 'install.py' file now)")
