@@ -1,7 +1,7 @@
 import os
 
 c = input('Are you root [y/N] ')
-if c == 'y':
+if c == 'y' or c == 'Y':
   pass
 else:
   print('You had to be root before instalation process')
